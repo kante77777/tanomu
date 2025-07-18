@@ -1,0 +1,436 @@
+/* 基本設定 */
+body {
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Interフォントを追加 */
+    line-height: 1.8; /* 行の高さを少し広げる */
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom right, #e0f2f7, #c1e7f0); /* 優しいグラデーション背景 */
+    color: #333; /* 読みやすい文字色 */
+    overflow-x: hidden; /* 横スクロールバーを非表示にする */
+    perspective: 1200px; /* 3D効果の基準を深くする */
+    animation: background-pan 30s linear infinite alternate; /* 背景をゆっくりパンするアニメーション */
+    background-size: 200% 200%; /* グラデーションサイズを大きくしてパン効果を出す */
+}
+
+@keyframes background-pan {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+}
+
+/* ヘッダーのスタイル */
+header {
+    background: linear-gradient(to right, #007bff, #0056b3); /* 鮮やかなグラデーション */
+    color: #fff;
+    padding: 3rem 0; /* パディングをさらに増やす */
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4); /* より強い影 */
+    position: relative;
+    overflow: hidden; /* 疑似要素のオーバーフローを隠す */
+    animation: header-bg-pulse 10s infinite alternate, header-float 5s infinite ease-in-out; /* 背景色の脈動と浮遊アニメーション */
+    transform: translateZ(0); /* ハードウェアアクセラレーションを有効に */
+}
+
+@keyframes header-bg-pulse {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+@keyframes header-float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 10%, transparent 70%); /* きらめきをさらに強く */
+    animation: header-sparkle 15s infinite linear, header-glow 5s infinite alternate, header-rotate 20s infinite linear; /* きらめく、グロー、回転アニメーション */
+}
+
+@keyframes header-sparkle {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes header-glow {
+    0% { opacity: 0.7; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+    100% { opacity: 0.7; transform: scale(1); }
+}
+
+@keyframes header-rotate {
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(360deg); }
+}
+
+header h1 {
+    margin: 0;
+    font-size: 4em; /* フォントサイズをさらに大きく */
+    text-shadow: 4px 4px 8px rgba(0,0,0,0.5), 0 0 20px rgba(255,255,255,0.8); /* より強い影と光沢 */
+    letter-spacing: 4px; /* 文字間隔をさらに広げる */
+    padding: 0 20px;
+    animation: text-pop-in 1.2s ease-out forwards; /* テキストの登場アニメーション */
+    transform-origin: center center;
+}
+
+@keyframes text-pop-in {
+    0% { transform: scale(0.2); opacity: 0; filter: blur(10px); }
+    80% { transform: scale(1.1); opacity: 1; filter: blur(0px); }
+    100% { transform: scale(1); }
+}
+
+header p {
+    font-size: 1.6em; /* フォントサイズをさらに大きく */
+    margin-top: 20px;
+    padding: 0 20px;
+    animation: text-fade-in 1.8s ease-out forwards; /* テキストのフェードインアニメーション */
+    animation-delay: 0.8s;
+    opacity: 0; /* 初期状態を非表示に */
+}
+
+@keyframes text-fade-in {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+
+/* メインコンテンツエリアのスタイル */
+main {
+    padding: 50px; /* パディングをさらに増やす */
+    max-width: 1200px; /* 最大幅をさらに広げる */
+    margin: 60px auto; /* 中央寄せ、上下のマージンを増やす */
+    background-color: #fff;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3); /* より強い影 */
+    border-radius: 25px; /* 角をより丸くする */
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    border: 2px solid rgba(0,123,255,0.2); /* 微妙なボーダーを追加 */
+}
+
+/* 各セクションのスタイル */
+section {
+    margin-bottom: 70px; /* マージンを増やす */
+    padding: 40px; /* パディングを増やす */
+    background: linear-gradient(to top left, #fdfdfd, #f5faff); /* セクション背景に優しいグラデーション */
+    border-radius: 20px; /* 角をより丸くする */
+    transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out, background 0.5s ease-in-out; /* ホバーアニメーションを滑らかに */
+    transform-style: preserve-3d;
+    position: relative;
+    z-index: 2;
+    border: 1px solid rgba(0,123,255,0.1);
+    animation: section-fade-in 1.5s ease-out forwards; /* セクションの登場アニメーション */
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+section:nth-of-type(1) { animation-delay: 1.0s; }
+section:nth-of-type(2) { animation-delay: 1.5s; }
+section:nth-of-type(3) { animation-delay: 2.0s; }
+
+@keyframes section-fade-in {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+section:hover {
+    transform: translateY(-12px) rotateX(3deg) scale(1.01); /* 少し上に移動し、わずかに回転、わずかに拡大 */
+    box-shadow: 0 25px 60px rgba(0,0,0,0.4); /* ホバー時の影をさらに強く */
+    background: linear-gradient(to top left, #f8f8f8, #e0f2f7); /* ホバー時に背景をより変化 */
+}
+
+section:last-of-type {
+    border-bottom: none;
+}
+
+/* 見出しのスタイル */
+h2 {
+    color: #007bff; /* 鮮やかな青 */
+    text-align: center;
+    margin-bottom: 45px; /* マージンを増やす */
+    font-size: 3.5em; /* フォントサイズをさらに大きく */
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.3), 0 0 20px rgba(0,123,255,0.8); /* より強い影と青いグロー */
+    position: relative;
+    animation: h2-slide-in 1.2s ease-out forwards; /* 見出しの登場アニメーション */
+    opacity: 0;
+}
+
+@keyframes h2-slide-in {
+    0% { transform: translateY(-70px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 120px; /* 幅をさらに広げる */
+    height: 8px; /* 太くする */
+    background: linear-gradient(to right, #28a745, #1e7e34); /* グラデーションのアクセントライン */
+    margin: 25px auto 0;
+    border-radius: 4px;
+    animation: line-grow 1.5s ease-out forwards; /* ラインの成長アニメーション */
+    opacity: 0;
+}
+
+@keyframes line-grow {
+    0% { width: 0; opacity: 0; }
+    100% { width: 120px; opacity: 1; }
+}
+
+
+h3 {
+    color: #0056b3;
+    margin-top: 40px;
+    margin-bottom: 25px;
+    font-size: 2em; /* フォントサイズを大きく */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+}
+
+/* 段落のスタイル */
+p {
+    margin-bottom: 30px; /* マージンを増やす */
+    text-align: justify;
+    font-size: 1.2em; /* フォントサイズを少し大きく */
+}
+
+/* リストのスタイル */
+ul {
+    list-style: none;
+    margin-bottom: 30px;
+    padding-left: 0;
+}
+
+ul li {
+    background-color: #e9f7fe; /* リストアイテムの背景色 */
+    padding: 18px 30px; /* パディングをさらに増やす */
+    margin-bottom: 15px; /* マージンを増やす */
+    border-left: 8px solid #007bff; /* 左側にアクセントラインをさらに太く */
+    border-radius: 10px; /* 角をより丸くする */
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15); /* 影を強く */
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease; /* すべてのリストアイテムに適用されるアニメーション */
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+}
+
+ul li::before {
+    position: absolute;
+    left: 15px; /* 位置を調整 */
+    top: 50%;
+    transform: translateY(-50%) scale(0); /* 最初は非表示で縮小 */
+    font-size: 1.5em; /* 絵文字を大きく */
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+ul li:hover {
+    background-color: #d0efff; /* ホバー時の背景色 */
+    transform: translateX(15px) rotateY(5deg); /* 右にスライドし、わずかにY軸回転 */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3); /* ホバー時の影をさらに強く */
+}
+
+ul li:hover::before {
+    opacity: 1; /* ホバー時に絵文字を表示 */
+    transform: translateY(-50%) scale(1); /* 拡大して表示 */
+}
+
+ul li strong {
+    color: #0056b3; /* 強調テキストの色 */
+}
+
+/* 画像のスタイル */
+.section-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 50px auto; /* マージンを増やす */
+    border-radius: 20px; /* 角をより丸くする */
+    box-shadow: 0 15px 40px rgba(0,0,0,0.35); /* より強い影 */
+    transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out, filter 0.5s ease-in-out; /* ホバーアニメーション */
+    transform-style: preserve-3d;
+}
+
+.section-image:hover {
+    transform: scale(1.07) rotate(2deg) translateZ(10px); /* 少し拡大し、回転、Z軸移動 */
+    box-shadow: 0 20px 50px rgba(0,0,0,0.45); /* ホバー時の影をさらに強く */
+    filter: brightness(1.2) saturate(1.2); /* 明るさと彩度をさらに上げる */
+}
+
+/* ボタンのスタイル */
+.button {
+    display: inline-block;
+    background: linear-gradient(to right, #28a745, #218838); /* グラデーションボタン */
+    color: #fff;
+    padding: 18px 35px; /* パディングをさらに増やす */
+    text-decoration: none;
+    border-radius: 40px; /* より丸いボタン */
+    margin-top: 35px; /* マージンを増やす */
+    transition: all 0.5s ease; /* すべてのプロパティにアニメーション */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4), 0 0 30px rgba(40,167,69,0.7); /* 影とグロー効果を強化 */
+    font-weight: bold;
+    letter-spacing: 2px; /* 文字間隔を広げる */
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transform: translateZ(0); /* ハードウェアアクセラレーションを有効に */
+    animation: button-pulse 2s infinite ease-in-out; /* ボタンの脈動アニメーション */
+}
+
+@keyframes button-pulse {
+    0% { transform: scale(1); box-shadow: 0 10px 25px rgba(0,0,0,0.4), 0 0 30px rgba(40,167,69,0.7); }
+    50% { transform: scale(1.02); box-shadow: 0 15px 35px rgba(0,0,0,0.5), 0 0 40px rgba(40,167,69,0.9); }
+    100% { transform: scale(1); box-shadow: 0 10px 25px rgba(0,0,0,0.4), 0 0 30px rgba(40,167,69,0.7); }
+}
+
+.button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255,255,255,0.3); /* 光沢を強く */
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.5s ease, height 0.5s ease;
+    z-index: -1;
+}
+
+.button:hover::before {
+    width: 250%; /* 光沢の範囲を広げる */
+    height: 250%;
+}
+
+.button:hover {
+    background: linear-gradient(to right, #218838, #1e7e34); /* ホバー時のグラデーション */
+    transform: translateY(-8px); /* 少し上に移動 */
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5), 0 0 40px rgba(40,167,69,0.9); /* ホバー時の影とグローをさらに強く */
+}
+
+/* フッターのスタイル */
+footer {
+    text-align: center;
+    padding: 35px; /* パディングを増やす */
+    background-color: #1a1a1a; /* より濃い背景色 */
+    color: #eee;
+    margin-top: 70px; /* マージンを増やす */
+    box-shadow: 0 -8px 20px rgba(0,0,0,0.3);
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* 区切り線のスタイル */
+hr {
+    border: none;
+    border-top: 4px dashed #a0d9e7; /* 色と太さを変更 */
+    margin: 80px 0; /* マージンを増やす */
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+/* レスポンシブデザインのためのメディアクエリ */
+
+/* タブレット向け (768px以下) */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.8em;
+    }
+
+    header p {
+        font-size: 1.2em;
+    }
+
+    h2 {
+        font-size: 2.5em;
+    }
+
+    h3 {
+        font-size: 1.6em;
+    }
+
+    main {
+        margin: 40px auto;
+        padding: 30px;
+    }
+
+    section {
+        padding: 30px;
+        margin-bottom: 50px;
+    }
+
+    ul li {
+        padding: 15px 25px;
+    }
+
+    .button {
+        padding: 15px 30px;
+    }
+}
+
+/* スマートフォン向け (480px以下) */
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 2.2em;
+        letter-spacing: 1px;
+    }
+
+    header p {
+        font-size: 1.1em;
+    }
+
+    h2 {
+        font-size: 2em;
+        margin-bottom: 35px;
+    }
+
+    h2::after {
+        width: 90px;
+        margin-top: 18px;
+    }
+
+    h3 {
+        font-size: 1.4em;
+    }
+
+    p {
+        font-size: 1.1em;
+    }
+
+    main {
+        margin: 25px;
+        padding: 25px;
+    }
+
+    section {
+        padding: 20px 0;
+        margin-bottom: 35px;
+    }
+
+    .button {
+        display: block;
+        width: 90%;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 1.1em;
+        padding: 12px 25px;
+    }
+
+    ul li {
+        padding: 12px 18px;
+        font-size: 1.05em;
+    }
+
+    .section-image {
+        margin: 35px auto;
+    }
+
+    hr {
+        margin: 60px 0;
+    }
+}
